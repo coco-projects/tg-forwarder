@@ -1,1 +1,9 @@
-# tg-forwarder
+## usage
+
+see examples folder
+
+---
+
+## License
+
+MIT
