@@ -5,8 +5,9 @@
     class Proxy
     {
         public Forwarder $forwarder;
+        public string    $hash;
 
-        public function __construct(public $config, public string $hash)
+        public function __construct(public $config)
         {
             $this->init();
         }
@@ -53,7 +54,6 @@
             $this->forwarder->initBotsManager();
 
             $this->forwarder->makeForwarderConfig();
-
         }
 
 
@@ -72,9 +72,16 @@
             return null;
         }
 
-        public function webHookEndpoint(): void
+        public function setHash(string $hash): static
         {
-            $this->forwarder->webHookEndpoint($this->hash);
+            $this->hash = $hash;
+
+            return $this;
+        }
+
+        public function webHookEndpoint(): array|\Telegram\Bot\Objects\Update
+        {
+            return $this->forwarder->webHookEndpoint($this->hash);
         }
 
         public function getTelegramClient(): \Telegram\Bot\Api

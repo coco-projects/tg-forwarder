@@ -87,30 +87,25 @@
         /*
          * ---------------------------------------------------------
          * */
-        public function webHookEndpoint(string $botHash): void
+        public function webHookEndpoint(string $botHash): array|Update
         {
             $msgTable      = $this->getMessageTable();
             $customerTable = $this->getCustomerTable();
             $botMapTable   = $this->getBotMapTable();
 
-            try
-            {
-                $bot = $this->getBotsManager($botHash);
+            $bot = $this->getBotsManager($botHash);
 
-                $this->currentToken = $bot->getAccessToken();
-                $this->botMapInfo   = $this->getRegisterBotInfoByBotToken($this->currentToken);
+            $this->currentToken = $bot->getAccessToken();
+            $this->botMapInfo   = $this->getRegisterBotInfoByBotToken($this->currentToken);
 
-                //测试这个方法要改 namespace Telegram\Bot\Methods\Update 的 getRequestBody 方法，加入测试数据
-                $update = $bot->commandsHandler(true);
+            //测试这个方法要改 namespace Telegram\Bot\Methods\Update 的 getRequestBody 方法，加入测试数据
+            $update = $bot->commandsHandler(true);
 
-                $this->insertMessage($update, $this->botMapInfo[$botMapTable->getPkField()]);
+            $this->insertMessage($update, $this->botMapInfo[$botMapTable->getPkField()]);
 
-                $bot->triggerCommand('internal_customer_message_handler', $update);
-            }
-            catch (\Exception $exception)
-            {
-                echo 'bot error: ' . $exception->getMessage();
-            }
+            $bot->triggerCommand('internal_customer_message_handler', $update);
+
+            return $update;
         }
 
 
@@ -522,6 +517,22 @@
             });
         }
 
+        public function isBotEnabled(string $botToken): bool
+
+        {
+            $msgTable      = $this->getMessageTable();
+            $customerTable = $this->getCustomerTable();
+            $botMapTable   = $this->getBotMapTable();
+
+            $info = $this->getRegisterBotInfoByBotToken($botToken);
+
+            if ($info)
+            {
+                return !!$info[$botMapTable->getIsEnableField()];
+            }
+
+            return false;
+        }
 
         public function disableBot(string $botToken): bool
         {
@@ -871,7 +882,6 @@
 
         public function getUserList(array $where = []): \think\model\Collection|array|\think\Collection
         {
-
             return $this->getCacheManager()->get('UserList-' . md5(json_encode($where)), function($item) use ($where) {
                 $item->expiresAfter(60);
 
@@ -903,7 +913,6 @@
                     'left'                               //
                 )->where($where)->select();
             });
-
         }
 
         public function getUserInfo(string $userId, int $botMapId): mixed
@@ -1444,7 +1453,7 @@
             return $this;
         }
 
-        public function isContainkWord(string $text): array
+        public function isContainBadWord(string $text): array
         {
             $words = [];
             foreach ($this->blockWordList as $word)

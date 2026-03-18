@@ -3,7 +3,14 @@
     require '../vendor/autoload.php';
     require './common.php';
 
-    $forwarder->webHookEndpoint();
+    try
+    {
+        $update = $forwarder->setHash($hash)->webHookEndpoint();
+    }
+    catch (\Exception $e)
+    {
+
+    }
 
 
     /*

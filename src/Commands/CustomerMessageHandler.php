@@ -46,13 +46,6 @@
                 {
                     $userInfo = $this->forwarderManager->getUserInfo($this->chatId, $this->botMapInfo[$customerTable->getPkField()]);
 
-                    if ($userInfo[$customerTable->getIsBlockedField()] == $this->forwarderManager::BLOCKED_1)
-                    {
-                        //用户被封锁了
-
-                        return;
-                    }
-
                     if ($userInfo[$customerTable->getIsFraudField()] == $this->forwarderManager::FRAUD_1)
                     {
                         //用户是骗子
@@ -77,6 +70,7 @@
                             'allow_sending_without_reply' => true,
                         ];
 
+                        //转发原文信息
                         $response = $this->telegram->copyMessage($data);
                         $this->forwarderManager->updateReplyToGroupMessageId($this->chatId, $this->messageId, $response->message_id);
 
@@ -84,7 +78,7 @@
                         $text = $this->message->text ?? $this->message->caption ?? '';
                         if ($text)
                         {
-                            $words = $this->forwarderManager->isContainkWord($text);
+                            $words = $this->forwarderManager->isContainBadWord($text);
 
                             if (count($words))
                             {
@@ -133,6 +127,22 @@
                         ];
                         $this->telegram->sendMessage($data);
                     }
+
+                    if ($userInfo[$customerTable->getIsBlockedField()] == $this->forwarderManager::BLOCKED_1)
+                    {
+                        //用户被封锁了
+                        $msg = implode(PHP_EOL, [
+                            '* 🚫当前用户已经被封锁 *',
+                            '解锁用户： /unblock',
+                            '查看用户信息： /info',
+                        ]);
+                        $this->telegram->sendMessage([
+                            'chat_id'             => $this->chatIdToForwarder,
+                            'message_thread_id'   => $userInfo[$customerTable->getMessageThreadIdField()],
+                            'text'                => $msg,
+                            'parse_mode'          => 'markdown',
+                        ]);
+                    }
                 }
                 else
                 {
@@ -174,7 +184,6 @@
                             $response = $this->telegram->copyMessage($data);
                             $this->forwarderManager->updateReplyToGroupMessageId($this->chatId, $this->messageId, $response->message_id);
                         }
-
                         elseif ($this->msgType == static::MSG_TYPE_EDITED_MESSAGE)
                         {
                             $newText = $this->message->text ?? $this->message->caption ?? '（非文本内容）';
