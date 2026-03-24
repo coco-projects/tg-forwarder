@@ -158,16 +158,16 @@
         },
         {
             "name": "coco-project/table-manager",
-            "version": "v1.0.14",
+            "version": "v1.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/coco-projects/table-manager.git",
-                "reference": "4877a7755d30d200e85ce27bbb3c9409857383ef"
+                "reference": "9bcb800443b8726a765b6459be9c722c94931a1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coco-projects/table-manager/zipball/4877a7755d30d200e85ce27bbb3c9409857383ef",
-                "reference": "4877a7755d30d200e85ce27bbb3c9409857383ef",
+                "url": "https://api.github.com/repos/coco-projects/table-manager/zipball/9bcb800443b8726a765b6459be9c722c94931a1d",
+                "reference": "9bcb800443b8726a765b6459be9c722c94931a1d",
                 "shasum": ""
             },
             "require": {
@@ -194,9 +194,9 @@
             ],
             "support": {
                 "issues": "https://github.com/coco-projects/table-manager/issues",
-                "source": "https://github.com/coco-projects/table-manager/tree/v1.0.14"
+                "source": "https://github.com/coco-projects/table-manager/tree/v1.0.16"
             },
-            "time": "2025-10-27T14:34:26+00:00"
+            "time": "2026-03-24T08:34:36+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -947,23 +947,23 @@
         },
         {
             "name": "irazasyed/telegram-bot-sdk",
-            "version": "v3.15.0",
+            "version": "v3.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irazasyed/telegram-bot-sdk.git",
-                "reference": "07146018d173dedfd520fb8f18a50f31e27b1e60"
+                "reference": "b0e7845ec5fb3ddf2088c489a80dca7b59d5df7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irazasyed/telegram-bot-sdk/zipball/07146018d173dedfd520fb8f18a50f31e27b1e60",
-                "reference": "07146018d173dedfd520fb8f18a50f31e27b1e60",
+                "url": "https://api.github.com/repos/irazasyed/telegram-bot-sdk/zipball/b0e7845ec5fb3ddf2088c489a80dca7b59d5df7f",
+                "reference": "b0e7845ec5fb3ddf2088c489a80dca7b59d5df7f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^7.5.1",
                 "guzzlehttp/psr7": "^2.5",
-                "illuminate/support": "9 - 12",
+                "illuminate/support": "9 - 13",
                 "league/event": "^2.2 || ^3.0",
                 "php": ">=8.0",
                 "psr/container": "^1.1 || ^2.0",
@@ -1024,9 +1024,9 @@
             ],
             "support": {
                 "issues": "https://github.com/irazasyed/telegram-bot-sdk/issues",
-                "source": "https://github.com/irazasyed/telegram-bot-sdk/tree/v3.15.0"
+                "source": "https://github.com/irazasyed/telegram-bot-sdk/tree/v3.16.0"
             },
-            "time": "2025-02-18T19:03:24+00:00"
+            "time": "2026-03-07T09:57:43+00:00"
         },
         {
             "name": "laravel/serializable-closure",
