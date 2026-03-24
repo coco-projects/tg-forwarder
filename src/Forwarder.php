@@ -17,6 +17,7 @@
 
     use Telegram\Bot\Api;
     use Telegram\Bot\Objects\Update;
+    use Telegram\Bot\Objects\WebhookInfo;
 
     class Forwarder
     {
@@ -684,7 +685,22 @@
             return $result;
         }
 
-        protected function deleteBotWebhook(string $botToken): bool
+        public function getBotWebhookInfo(string $botToken): WebhookInfo
+        {
+            $msgTable      = $this->getMessageTable();
+            $customerTable = $this->getCustomerTable();
+            $botMapTable   = $this->getBotMapTable();
+
+            $hash = static::getBotHash($botToken);
+
+            $bot = $this->getBotsManager($hash);
+
+            $result = $bot->getWebhookInfo();
+
+            return $result;
+        }
+
+        public function deleteBotWebhook(string $botToken): bool
         {
             $msgTable      = $this->getMessageTable();
             $customerTable = $this->getCustomerTable();
