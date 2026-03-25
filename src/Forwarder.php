@@ -1223,7 +1223,16 @@
         protected function initRedis(): static
         {
             $this->container->set('redisClient', function(Container $container) {
-                return (new \Redis());
+                $redis = new \Redis();
+                $redis->connect($this->redisHost, $this->redisPort);
+
+                if ( $this->redisPassword) {
+                    $redis->auth( $this->redisPassword);
+                }
+
+                $redis->select( $this->redisDb);
+
+                return $redis;
             });
 
             $this->initCacheManager();
