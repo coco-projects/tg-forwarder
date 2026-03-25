@@ -22,7 +22,9 @@
             $customerTable = $this->forwarderManager->getCustomerTable();
             $botMapTable   = $this->forwarderManager->getBotMapTable();
 
-            /********************************************************/ /*
+            /********************************************************/
+
+            /*
             [
                 'id'                => 1217813618469375624,
                 'user_id'           => 5977238492,

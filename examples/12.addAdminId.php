@@ -2,21 +2,24 @@
 
     require '../vendor/autoload.php';
     require './common.php';
-    $manager->addAdminId($token, [
+
+    $forwarder->addAdminId($token, [
         5977238492,
     ]);
-/*
-    $manager->removeAdminId($token, [
-        5977238492,
-    ]);*/
 
-    $res = $manager->getAdminId($token);
+    /*
+        $forwarder->removeAdminId($token, [
+            5977238492,
+        ]);
+    */
+
+    $res = $forwarder->getAdminId($token);
     print_r($res);
 
-/*
-Array
-(
-    [0] => 5977238492
-)
+    /*
+    Array
+    (
+        [0] => 5977238492
+    )
 
-*/
+    */

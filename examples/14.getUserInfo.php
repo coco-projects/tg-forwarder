@@ -3,7 +3,7 @@
     require '../vendor/autoload.php';
     require './common.php';
 
-    $data = $manager->getUserInfo(5977238492, '1218919484316715176');
+    $data = $forwarder->getUserInfo(5977238492, '1218919484316715176');
 
     print_r($data);
     /*

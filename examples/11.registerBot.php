@@ -3,11 +3,11 @@
     require '../vendor/autoload.php';
     require './common.php';
 
-//    $manager->addBot($token, $group);
-//    $manager->registerBot($token);
-//    $manager->disableBot($token);
-        $manager->enableBot($token);
-    //    $manager->unregisterBot($token);
-    var_dump($manager->isBotEnabled($token));
+//    $forwarder->addBot($token, $group);
+//    $forwarder->registerBot($token);
+//    $forwarder->disableBot($token);
+    $forwarder->enableBot($token);
+    //    $forwarder->unregisterBot($token);
+    var_dump($forwarder->isBotEnabled($token));
 
 

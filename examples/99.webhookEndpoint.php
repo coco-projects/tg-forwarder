@@ -5,7 +5,7 @@
 
     try
     {
-        $update = $forwarder->setHash($hash)->webHookEndpoint();
+        $update = $proxy->setHash($hash)->webHookEndpoint();
     }
     catch (\Exception $e)
     {

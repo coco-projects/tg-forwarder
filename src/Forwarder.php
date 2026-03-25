@@ -1335,12 +1335,13 @@
             $customerTable = $this->getCustomerTable();
             $botMapTable   = $this->getBotMapTable();
 
-            if (!$update->getMessage())
+            $msg = UpdateMessage::parse(json_encode($update->getRawResponse(), 256));
+
+            //空信息不用管
+            if (!$msg->updateId)
             {
                 return;
             }
-
-            $msg = UpdateMessage::parse(json_encode($update->getRawResponse(), 256));
 
             $data = [
                 $msgTable->getPkField() => $msgTable->calcPk(),

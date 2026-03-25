@@ -4,7 +4,7 @@
 
     require './common.php';
 
-    $res = $manager->getBotsList();
+    $res = $forwarder->getBotsList();
     print_r($res);
 
     /*
