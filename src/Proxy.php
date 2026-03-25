@@ -52,8 +52,6 @@
             });
 
             $this->forwarder->initBotsManager();
-
-            $this->forwarder->makeForwarderConfig();
         }
 
 
