@@ -118,6 +118,11 @@
                 if (!$this->message->message_thread_id)
                 {
                     //管理员在在群里群发的信息，不是跟指定的topics发的
+
+                    $this->replyWithMessage([
+                        'text' => '这是全局,需要指定一个topics发送信息',
+                    ]);
+
                     return false;
                 }
 
